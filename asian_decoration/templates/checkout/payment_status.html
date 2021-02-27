@@ -1,0 +1,40 @@
+{% load static %}
+<Html>
+  <head>
+    <title>payment status</title>
+<!--      <h1> {{response}} </h1>-->
+        <link rel="stylesheet" href="{% static 'css/Style_checkout.css' %} ">
+  </head>
+  <body>
+    <h1 style="color:white">Report of customer order</h1>
+    <div class="container" style="color:white">
+        {% csrf_token %}
+      <h2>Payment status regarding your Order ID {{ response.ORDERID }}</h2>
+      {% if response.RESPCODE == '01' %}
+          ORDER SUCCESS
+        <h5>User Name ===> {{ user }}</h5>
+        <h5>Payment GATEWAYNAME ===> {{ response.GATEWAYNAME }}</h5>
+        <h5>PAYMENTMODE ===> {{ response.PAYMENTMODE }}</h5>
+        <h5>Payment TXNDATE ===> {{ response.TXNDATE }}</h5>
+        <h5>Payment CURRENCY ===> {{ response.CURRENCY }}</h5>
+        <h5>Payment TXNAMOUNT ===> {{ response.TXNAMOUNT }}</h5>
+
+<div class="left" style="float: left;margin-left: 150px; color:white;">
+    <a href="/" ><button style="background: gold;color: #ffffff;width: 170px;font-weight: bold;font-size: 15px;height: 40px;border:none;cursor: pointer;border-radius: 10px;" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue Shopping</button></a>
+</div>
+      {% else %}
+        <h5 style="color:white"> order sub_total {{ ord.Sub_total }} </h5>
+        <h5>Payment amount ===> {{ ord.final_total }}</h5>
+        <h5>Payment status regarding your Order ID {{ ord.order_id }}</h5>
+        <h5>Payment status  {{ charge.status }}</h5>
+        <h5 style="color:white"> User Email {{ dates.Email }} </h5>
+        <h5 style="color:white"> User Starting Date {{ dates.Str_date }} </h5>
+        <h5 style="color:white"> User Ending Date {{ dates.End_date }} </h5>
+        <h5>Payment Recipt <a href="{{ charge.receipt_url }}">{{ charge.receipt_url }}</a></h5>
+        <div class="left" style="float: left;margin-left: 150px; color:white;">
+            <a href="/" ><button style="background: gold;color: #ffffff;width: 170px;font-weight: bold;font-size: 15px;height: 40px;border:none;cursor: pointer;border-radius: 10px;" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue Shopping</button></a>
+        </div>
+      {% endif %}
+    </div>
+  </body>
+</Html>

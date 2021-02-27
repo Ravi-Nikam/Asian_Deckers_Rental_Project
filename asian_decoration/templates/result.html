@@ -1,0 +1,50 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <title>: All Products :</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+  <div id="wrapper">
+  <div id="header">
+    <!-- Navigation bar -->
+   <div class="navbar">
+      <a class="active" href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+      <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+      <a href="/category/">Category</a>
+      <a href="/product/">Product</a>
+      {% if user.is_authenticated %}
+          <a href="registration" style="float: right; margin-right:25px; "><i class="fa fa-fw fa-user"></i>{{user}}</a>
+      {% else %}
+          <a href="registration" style="float: right; margin-right:25px; "><i class="fa fa-fw fa-user"></i>Login</a>
+      {% endif %}
+   </div>
+       <!-- searched for -->
+       <div class="prod-container">
+       {% for object in products %}
+                <div class="prod-box">
+                   <img src="{{ object.image.url }}"> </a>
+                    <div class="prod-trans">
+                    <div class="prod-feature">
+                        <p>{{ object.name }}</p>
+                        <p style="color:#fff;font-weight: bold;">price: 800/piece</p><br/>
+                        <a style="padding-left:70px;" href='{% url "product_description" object.slug %}'>
+                            <input   type="button" value="Show Product">
+                        </a>
+                    </div>
+                    </div>
+                </div>
+       {% endfor %}
+       </div>
+       <!-- end searched  -->
+   </div>
+  </div>
+  </div>
+</body>
+</html>

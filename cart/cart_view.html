@@ -1,0 +1,89 @@
+{% extends 'base.html' %} <!-- inherite base.html file at first line of page -->
+{% load static %}
+  
+  {% block title %} <title>: : Cart : :</title> {% endblock %} 
+  
+
+  {% block body %}
+
+  {% if empty_message %}
+      <h1>{{ empty_message }}</h1>
+      <script>alert("{{ empty_message }}")</script>
+  {% else %}
+        	<div class="container_cate" style="margin-left: 40px;">
+            <div id="heading-block" style="color: gold">
+                <h2 style="color: white; background-color: black; margin:12px;">CART DETAIL'S</h2><hr/>
+            </div>
+          </div>
+          <div class="cart_container" style="margin-left:50px;margin-top: 10%;">
+            <div>
+              <P></P>
+            </div>
+            <table class="content-table" style="color: #fff;">
+              <thead>
+                <tr>
+                  <th>Product Images</th>
+                  <th>Product Name</th>
+                  <th>Product Description</th>
+                  <th>Unit Price</th>
+                  <th>Qty</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for item in carts1.items.all %}
+                <tr>
+                  <td ><img src="{{ item.Product.image.url }}" alt="image1" width="100px" height="100px" style="padding:5px;"></td>
+                  <td>{{ item.Product.name }}</td>
+                  <td>{{ item.Product.description }}</td>
+                  <td>Rs.{{ item.Product.price }}</td>
+<!--                  <td>{{ item.quantity }}</td>-->
+                  <td><a href='{% url "pro_add_to_cart" item.Product.slug %}'><span style="background-color:red; padding: 5px 5px 5px 5px;height: 10px;color: #fff;"><i class="fa fa-trash-o" >&nbsp;Remove</i></span></a></td>
+                </tr>
+              {% endfor %}
+              <tfoot>
+                <tr>
+                  <th>Sub Total</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Rs.{{ carts1.total }}</th>
+                </tr>
+                <tr>
+                  <th>Tax</th>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Rs.0.00</th>
+                </tr>
+                <tr>
+                  <th>Shipping Charges</th>
+                  <th></th>
+                  <th></th>
+                  <th style="border-bottom: 2px solid gold;"></th>
+                  <th style="border-bottom: 2px solid gold;">Rs.0.00</th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                  <th>Total Amount: </th>
+                  <th>Rs.{{ carts1.total }}</th>
+                </tr>
+              </tfoot>
+            </table>
+              <div class="cart_btn_left_right">
+                <div class="left" style="float: left;margin-left: 150px;">
+                  <a href="/" ><button style="background: gold;color: #ffffff;width: 170px;font-weight: bold;font-size: 15px;height: 40px;border:none;cursor: pointer;border-radius: 10px;" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue Shopping</button></a>
+                </div>
+
+                <div class="right" style="float: right;margin-right: 210px;">
+                    <a href="#" style="padding-right: 15px;"><button style="background: gold;color: #ffffff;width: 170px;font-weight: bold;font-size: 15px;height: 40px;border:none;border-radius: 10px;cursor: pointer;" class="btn btn-outline-secondary"><i class="fa fa-refresh"></i> Update cart</button></a>
+
+                    <a href="#"><button type="submit" class="btn btn-primary" style="background: #0D872D;font-size: 20px;box-shadow: 0 0 10px gold;border: none;border-radius: 10px;font-weight: bolder;width: 230px;height: 50px;cursor: pointer;color: #fff;">Proceed to checkout <i class="fa fa-chevron-right"></i></button></a>
+                </div>
+              </div>
+          </div>
+          </div>
+            {% endif %}
+ {% endblock %}

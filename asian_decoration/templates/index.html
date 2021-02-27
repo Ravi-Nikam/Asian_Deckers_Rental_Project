@@ -1,0 +1,111 @@
+{% extends 'base.html' %} <!-- inherite base.html file at first line of page -->
+{% load static %}
+
+  {% block title %} <title>: : Home Page : :</title> {% endblock %}
+
+
+  {% block body %}
+
+  <!-- Django validation format below code is show the registration form is submit than that details goes to views.py file than perform some validation if dictionary of info key is found than popup the alert box and show the warning or information -->
+        {% if page_message %}
+          <script>alert("{{ page_message }}")</script>
+        {% endif %}
+        {% if messages.error %}
+          <script>alert("{{ messages.error }}")</script>
+        {% endif %}
+    <div >
+      <img src="{% static 'images/i2.jpg' %}" alt="banner-image" height="750px" width="1333px" style="padding-top: 2px;">
+	     <div class="container1">
+	       <span class="text1">Welcome to </span>
+	       <span class="text2">Asian Decker's</span>
+	     </div>
+    </div>
+
+  </br>
+    <!--  Category boxes -->
+    <div class="container_cate" style="margin-left: 10px;">
+      <div id="heading-block" style="color: gold">
+        <h2 style="color: white; background-color: black; margin:12px;">Category's</h2>
+      </div>
+     <!-- first seven Category  -->
+
+      {% if cate %}
+        {% for x in cate|slice:":7" %}
+          <a href='{% url "cat_rel_pro" x.slug %}'>
+            <div class="column" style="padding-top:1%;">
+                <div class="catbox">
+                  <img src="{{x.cat_img.url}}" alt="carpet category" style=""/>
+                  <span>{{x.cname}}</span>
+                </div>
+            </div>
+          </a>
+        {% endfor %}
+      <!-- other Category  -->
+        {% if cate|length >= 7 %}
+        <a href="product">
+          <div class="column" style="padding-top:1%;">
+            <div class="catbox" style="background-color: gold;">
+             <span>... and Show {{ cate|length|add:"-7"}} More Categories </span>
+            </div>
+          </div>
+        </a>
+        {% endif %}
+      {% endif %}
+  </br>
+    <div id="heading-block" style="padding-top:1%;">
+        <h2 style="color: white; background-color: black; margin:12px;">PACKAGES</h2>
+    </div>
+
+<div class="columns">
+  <ul class="price">
+    <li class="header">Diamond</li>
+    <li class="grey">Rs. 2,00,000*</li>
+    <li>2 Entrest Doors</li>
+    <li>Diya Decoration</li>
+    <li>LED Screen</li>
+    <li>Wall Decoration</li>
+    <li>5 Center Pices</li>
+    <li class="grey"><a href="register/" class="button">Sign Up</a></li>
+  </ul>
+</div>
+
+<div class="columns">
+  <ul class="price">
+    <li class="header">Golden</li>
+    <li class="grey">Rs. 1,50,000*</li>
+    <li>1 Entrest Door</li>
+    <li>Flower Decoration</li>
+    <li>Lamp Decoration</li>
+    <li>Floor Decoration</li>
+    <li>3 Center Pices</li>
+    <li class="grey"><a href="register/" class="button">Sign Up</a></li>
+  </ul>
+</div>
+<div class="columns">
+  <ul class="price">
+    <li class="header">Silver</li>
+    <li class="grey">Rs. 80,000*</li>
+    <li>1 Entrest Door</li>
+    <li>Candels Decoration(24)</li>
+    <li>2 Center Pices</li>
+    <li>Paper Fan Decoration</li>
+    <li>Rental Props</li>
+    <li class="grey"><a href="register/" class="button">Sign Up</a></li>
+  </ul>
+</div>
+</div>
+
+<div class="columns">
+  <video width="430" height="350" controls muted="true" autoplay="true">
+  <source src="{% static 'videos/Best Wedding.mp4'%}" type="video/mp4">
+</video>
+</div>
+
+<div class="columns" style="padding-left: 453px;" >
+  <video width="430" height="350" controls muted="true" autoplay="true">
+    <source src="{% static 'videos/Wedding Decor.mp4' %}" type="video/mp4">
+  </video>
+</div>
+<div>
+</div>
+{% endblock %}

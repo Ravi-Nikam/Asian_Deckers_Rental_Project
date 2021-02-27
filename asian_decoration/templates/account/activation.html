@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Activation</title>
+</head>
+{% extends 'base.html' %} <!-- inherite base.html file at first line of page -->
+{% load static %}
+
+  {% block title %} <title>: : Home Page : :</title> {% endblock %}
+
+
+  {% block body %}
+<body>
+        {% if page_message %}
+          <script>alert("{{ page_message }}")</script>
+        {% endif %}
+</body>
+{% endblock %}
+</html>
