@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 DEFAULT_FROM_EMAIL = "someemail@gmail.com"
 
 EMAIL_HOST = 'smtp.gmail.com'   #'smtp.sendgrid.net'  # its email servce
-EMAIL_HOST_USER = 'asiandeckers03@gmail.com'   # login to gmail  os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = 'Asiandeckers123'        # password of it  os.environ.get('EMAIL_PASS')
+EMAIL_HOST_USER = ''   # login to gmail  os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = ''        # password of it  os.environ.get('EMAIL_PASS')
 EMAIL_PORT = 587                               #
 EMAIL_USE_TLS = True
 
