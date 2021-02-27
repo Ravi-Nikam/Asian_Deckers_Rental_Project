@@ -112,7 +112,7 @@ def payment(request):
         pay.save()
     param_dict = {
         # marchent id
-        'MID': 'seWOqm24474885361610',
+        'MID': '',
         'ORDER_ID': order_id,
         'TXN_AMOUNT': str(amount),
         'CUST_ID': emails,
