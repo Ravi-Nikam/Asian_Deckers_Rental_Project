@@ -12,7 +12,7 @@ from django.contrib import messages
 from order.models import Order
 from django.views.decorators.csrf import csrf_exempt
 User = get_user_model()
-MERCHANT_KEY = 'NimklH_srEi9%&@d';
+MERCHANT_KEY = '#';
 
 # Create your views here.
 import re
